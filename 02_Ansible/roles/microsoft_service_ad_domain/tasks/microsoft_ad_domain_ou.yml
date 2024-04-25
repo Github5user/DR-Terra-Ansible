@@ -1,0 +1,18 @@
+# Ansible collection for Active Directory management
+# https://docs.ansible.com/ansible/latest/collections/microsoft/ad/index.html#plugins-in-microsoft-ad
+
+# microsoft.ad.ou module – Manage Active Directory organizational units
+# https://docs.ansible.com/ansible/latest/collections/microsoft/ad/ou_module.html
+
+- name: OU erstellen
+  microsoft.ad.ou:
+    name: "{{ name_of_OU }}"
+    path: "{{ path_name }}"
+
+    # domain_username: "adminuser@contoso.local"
+    # domain_password: "Telekom12345!"
+
+    # state: present = hinzufuegen eines AD-Objekts bzw. einer Active Directory organizational unit
+    # state: absent = entfernen eines AD-Objekts bzw. einer Active Directory organizational unit
+    state: present
+    protect_from_deletion: "{{ protect_selection }}"
