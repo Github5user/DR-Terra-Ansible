@@ -1,0 +1,127 @@
+# Installation von Active Directory  
+- name: Active Directory - Installation
+  include_tasks: "tasks/microsoft_ad_domain_dc.yml"
+
+- name: Active Directory - Organizational Unit "Verwaltung"
+  vars: 
+    name_of_OU: "Verwaltung"
+    path_name: "DC=contoso,DC=local"
+    
+    # protected "true" bedeutet, dass die OU vor versehentlichen Loeschen geschuetzt ist
+    # protected "false" bedeutet, dass die OU sofort geloescht werden kann
+    protect_selection: "false"
+  include_tasks: "tasks/microsoft_ad_domain_ou.yml"
+
+- name: Active Directory - Organizational Unit "Berechtigungsgruppen"
+  vars: 
+    name_of_OU: "Berechtigungsgruppen"
+    path_name: "OU=Verwaltung,DC=contoso,DC=local"
+    
+    # protected "true" bedeutet, dass die OU vor versehentlichen Loeschen geschuetzt ist
+    # protected "false" bedeutet, dass die OU sofort geloescht werden kann
+    protect_selection: "false"
+  include_tasks: "tasks/microsoft_ad_domain_ou.yml"
+
+- name: Active Directory - Organizational Unit "Admins"
+  vars: 
+    name_of_OU: "Admins"
+    path_name: "OU=Verwaltung,DC=contoso,DC=local"
+
+    # protected "true" bedeutet, dass die OU vor versehentlichen Loeschen geschuetzt ist
+    # protected "false" bedeutet, dass die OU sofort geloescht werden kann
+    protect_selection: "false"
+  include_tasks: "tasks/microsoft_ad_domain_ou.yml"
+
+- name: Active Directory - Organizational Unit "Server"
+  vars: 
+    name_of_OU: "Server"
+    path_name: "DC=contoso,DC=local"
+
+    # protected "true" bedeutet, dass die OU vor versehentlichen Loeschen geschuetzt ist
+    # protected "false" bedeutet, dass die OU sofort geloescht werden kann
+    protect_selection: "false"
+  include_tasks: "tasks/microsoft_ad_domain_ou.yml"
+
+- name: Active Directory - Organizational Unit "File Server"
+  vars: 
+    name_of_OU: "File"
+    path_name: "OU=Server,DC=contoso,DC=local"
+
+    # protected "true" bedeutet, dass die OU vor versehentlichen Loeschen geschuetzt ist
+    # protected "false" bedeutet, dass die OU sofort geloescht werden kann
+    protect_selection: "false"
+  include_tasks: "tasks/microsoft_ad_domain_ou.yml"
+
+- name: Active Directory - Organizational Unit "Web Server"
+  vars: 
+    name_of_OU: "Web"
+    path_name: "OU=Server,DC=contoso,DC=local"
+
+    # protected "true" bedeutet, dass die OU vor versehentlichen Loeschen geschuetzt ist
+    # protected "false" bedeutet, dass die OU sofort geloescht werden kann
+    protect_selection: "false"
+  include_tasks: "tasks/microsoft_ad_domain_ou.yml"
+
+- name: Active Directory - Organizational Unit "Client"
+  vars: 
+    name_of_OU: "Client"
+    path_name: "DC=contoso,DC=local"
+    
+    # protected "true" bedeutet, dass die OU vor versehentlichen Loeschen geschuetzt ist
+    # protected "false" bedeutet, dass die OU sofort geloescht werden kann
+    protect_selection: "false"
+  include_tasks: "tasks/microsoft_ad_domain_ou.yml"
+
+- name: Active Directory - Organizational Unit "Benutzer"
+  vars: 
+    name_of_OU: "Benutzer"
+    path_name: "DC=contoso,DC=local"
+
+    # protected "true" bedeutet, dass die OU vor versehentlichen Loeschen geschuetzt ist
+    # protected "false" bedeutet, dass die OU sofort geloescht werden kann
+    protect_selection: "false"
+  include_tasks: "tasks/microsoft_ad_domain_ou.yml"
+
+ 
+- name: Active Directory - Benutzer - Administrator 1
+  vars: 
+    domain_name: "contoso.local"
+    first_name: "Herbert"
+    sur_name: "Mayer"
+    user_password: "Password12345!"
+    ou_path: "OU=Admins,OU=Verwaltung,DC=contoso,DC=local"
+  include_tasks: "tasks/microsoft_ad_domain_user.yml"
+
+
+- name: Active Directory - Benutzer - Administrator 2
+  vars: 
+    domain_name: "contoso.local"
+    first_name: "Herbert"
+    sur_name: "Schubert"
+    user_password: "Password12345!"
+    ou_path: "OU=Admins,OU=Verwaltung,DC=contoso,DC=local"
+  include_tasks: "tasks/microsoft_ad_domain_user.yml"
+
+- name: Active Directory - Benutzer - CSV-File
+  vars: 
+    domain_name: contoso.local
+  include_tasks: "tasks/microsoft_ad_domain_user2.yml"
+
+
+- name: Active Directory - Gruppe - RDS Users
+  include_tasks: "tasks/microsoft_ad_domain_group_RDS.yml"
+
+- name: Active Directory - Gruppe - Web Users
+  include_tasks: "tasks/microsoft_ad_domain_group_WEB.yml"
+
+- name: Active Directory - Gruppe - File Users
+  include_tasks: "tasks/microsoft_ad_domain_group_File.yml"
+
+- name: Active Directory - Gruppe - Tier 0 Admins
+  include_tasks: "tasks/microsoft_ad_domain_group_Tier0admins.yml"
+
+- name: Active Directory - Gruppe - Tier 1 Admins
+  include_tasks: "tasks/microsoft_ad_domain_group_Tier1admins.yml"
+
+- name: Active Directory - Gruppe - Remote Desktop Users
+  include_tasks: "tasks/microsoft_ad_domain_permission_RDSuser.yml"
