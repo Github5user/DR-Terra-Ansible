@@ -1,0 +1,11 @@
+# ansible.windows.win_dns_client module – Configures DNS lookup on Windows hosts
+# https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_dns_client_module.html#ansible-collections-ansible-windows-win-dns-client-module
+
+- name: DNS-Server auf Domänencontroller und Google DNS setzen
+  ansible.windows.win_dns_client:
+    adapter_names: '*'
+    ipv4_addresses:
+    # dns_servers:
+      - 172.16.3.100
+      - 8.8.8.8
+    log_path: C:\dns_log.txt
