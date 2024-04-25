@@ -1,0 +1,16 @@
+# microsoft.ad.user module – Manage Active Directory users
+# https://docs.ansible.com/ansible/latest/collections/microsoft/ad/user_module.html
+
+# Berechtigungsgruppe für den Zugriff auf Web Services / Web Server
+- name: WEB-Users erstellen
+  microsoft.ad.group:
+    name: WEB-Users
+    scope: global
+    path: "OU=Berechtigungsgruppen,OU=Verwaltung,DC=contoso,DC=local"
+    description: "Berechtigungsgruppe für den Zugriff auf Web Services / Web Server"
+    members:
+      add:
+      - CONTOSO\WebUser01
+      - CONTOSO\WebUser02
+      - CONTOSO\WebUser03
+    state: present
