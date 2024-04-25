@@ -1,6 +1,6 @@
 #cloud-config
-# Damit wir nach dem Start des Ansible-Controller-Hosts Ansible installiert.
-# Dabei wir ein Playbook-Repository von einem entfernten privaten Repository installiert.
+# Damit wird nach dem Start des Ansible-Controller-Hosts Ansible installiert.
+# Dabei wird ein Playbook-Repository von einem entfernten privaten Repository installiert.
 # Zum Schluss werden Verzeichnisse erstellt und für den User Ansibleuser berechtigt.
 
 package_update: true
