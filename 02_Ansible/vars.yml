@@ -1,0 +1,9 @@
+# ---
+# # 17.04.2024
+
+# Variablen
+
+# Domain - Active Directory
+
+ad_domain: "CONTOSO"
+ad_fqdn: "contoso.local"
