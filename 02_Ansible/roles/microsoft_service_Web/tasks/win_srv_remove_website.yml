@@ -1,0 +1,7 @@
+# win_iis_website – Configures a IIS Web site
+# https://docs.ansible.com/ansible/2.8/modules/win_iis_website_module.html
+
+- name: Standard-Website aus dem IIS entfernen
+  win_iis_website:
+    name: "Default Web Site"
+    state: absent
