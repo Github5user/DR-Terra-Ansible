@@ -1,0 +1,53 @@
+# community.general.read_csv module – Read a CSV file
+# https://docs.ansible.com/ansible/latest/collections/community/general/read_csv_module.html
+
+- name: CSV-Datei lesen
+  community.general.read_csv:
+
+    # Datei liegt im Root-Verzeichnis
+    # path: AD_users.csv
+    path: Dateien/ADaccount/AD_users.csv
+    delimiter: ';'
+  register: csv_data
+  delegate_to: localhost
+
+
+# microsoft.ad.user module – Manage Active Directory users
+# https://docs.ansible.com/ansible/latest/collections/microsoft/ad/user_module.html
+
+- name: AD Benutzer erstellen
+  microsoft.ad.user:
+    # sam_account_name: "{{ item.nachname }}{{ item.vorname[0] }}"
+    sam_account_name: "{{ item.nachname }}{{ item.vorname }}"
+
+    # upn: "{{ item.nachname }}{{ item.vorname[0] }}@{{ domain_name }}"
+    upn: "{{ item.nachname }}{{ item.vorname }}@{{ domain_name }}"
+
+    # name: "{{ item.username }}"
+    name: "{{ item.nachname }} {{ item.vorname }}"
+    display_name: "{{ item.nachname }} {{ item.vorname }}"
+    firstname: "{{ item.vorname }}"
+    surname: "{{ item.nachname }}"
+    company: "{{ item.firma }}"
+    password: "Password12345!"
+    postal_code: "{{ item.postleitzahl }}"
+    city: "{{ item.stadt }}"
+    street: "{{ item.strasse }}"
+    attributes:
+      set:
+        title: "{{ item.title }}"
+        mobile: "{{ item.mobile }}"
+        telephoneNumber: "{{ item.festnetz }}"
+        physicalDeliveryOfficeName: "{{ item.buero }}"
+        wWWHomePage: "{{ item.homepage }}"
+        c: "{{ item.staat }}"
+    description: "{{ item.beschreibung }}"
+
+    enabled: true
+    password_never_expires: false
+    state: present
+    groups:
+      set:
+      - Domain Users
+      # - Domain Admins
+  loop: "{{ csv_data.list }}"
