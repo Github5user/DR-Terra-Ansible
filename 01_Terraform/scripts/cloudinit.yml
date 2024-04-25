@@ -1,0 +1,29 @@
+#cloud-config
+# Damit wir nach dem Start des Ansible-Controller-Hosts Ansible installiert.
+# Dabei wir ein Playbook-Repository von einem entfernten privaten Repository installiert.
+# Zum Schluss werden Verzeichnisse erstellt und für den User Ansibleuser berechtigt.
+
+package_update: true
+package_upgrade: true
+packages:
+  - git
+  - python3-venv
+  - python3-pip
+  - libffi-dev
+  - libssl-dev
+  - jq
+
+runcmd:
+   - python3 -m venv /home/ansibleuser/.venv
+   - /home/ansibleuser/.venv/bin/pip install ansible pywinrm[credssp]
+   - echo "PATH=$PATH:/home/ansibleuser/.venv/bin" >>  /home/ansibleuser/.bashrc
+   - mkdir /etc/ansible
+   - touch -r /etc/ansible/hosts
+   - curl -s -H Metadata:true --noproxy "*" "http://169.254.169.254/metadata/instance?api-version=2021-02-01" | jq -r '.compute.userData' | base64 -d > /etc/ansible/hosts
+   - chmod +r  /etc/ansible/hosts
+   - chown ansibleuser -R /home/ansibleuser/.venv/
+   - cd /home/ansibleuser
+   - mkdir masterarbeit
+   - cd masterarbeit
+   - mkdir roles
+   - chown ansibleuser -R /home/ansibleuser/masterarbeit
