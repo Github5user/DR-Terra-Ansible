@@ -1,0 +1,6 @@
+name;zone;target;type
+server01;contoso.local;172.16.2.4;ARecord
+intranet;contoso.local;172.16.4.100;ARecord
+test1;contoso.local;192.168.1.1;ARecord
+test2;contoso.local;192.168.1.2;ARecord
+test3;contoso.local;192.168.1.3;ARecord
