@@ -1,0 +1,15 @@
+# Installation von Windows Rolle "File Server"
+- name: File Server - Installation
+  vars: 
+    # für eine Liste aller Rollen - auf Server => Get-WindowsFeature
+    feature_name: File-Services
+    include_sub_features_selection: "true"
+    include_management_tools_selection: "true"
+  include_tasks: "tasks/win_srv_add_feature.yml"
+
+- name: AD Gruppe - lokale Administratoren hinzufügen
+  ansible.windows.win_group_membership:
+    name: Administrators
+    members:
+      - CONTOSO\T1-Admins
+    state: present
