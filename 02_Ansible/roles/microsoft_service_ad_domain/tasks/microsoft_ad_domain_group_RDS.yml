@@ -1,0 +1,17 @@
+# microsoft.ad.user module – Manage Active Directory users
+# https://docs.ansible.com/ansible/latest/collections/microsoft/ad/user_module.html
+
+# Berechtigungsgruppe für den Zugriff auf RDS / Terminal Server
+- name: RDS-Users erstellen
+  microsoft.ad.group:
+    name: RDS-Users
+    scope: global
+    path: "OU=Berechtigungsgruppen,OU=Verwaltung,DC=contoso,DC=local"
+    description: "Berechtigungsgruppe für den Zugriff auf RDS / Terminal Server"
+    members:
+      add:
+      - CONTOSO\RDSUser01
+      - CONTOSO\RDSUser02
+      - CONTOSO\RDSUser03
+      - CONTOSO\MustermannMax
+    state: present
