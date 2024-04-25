@@ -1,0 +1,37 @@
+windows:
+  children:
+    dcservers:
+      hosts:
+        DC01:
+          ansible_host: 172.16.3.100
+    webservers:
+      hosts:
+        Web01:
+          ansible_host: 172.16.4.100
+    fileservers:
+      hosts:
+        File01:
+          ansible_host: 172.16.5.100
+    pkiservers:
+      hosts:
+        PKI01:
+          ansible_host: 172.16.3.110
+    tsservers:
+      hosts:
+        RDS01:
+          ansible_host: 172.16.6.100
+
+    collection01:
+      hosts:
+        DC01:
+        Web01:
+        File01:
+        PKI01:
+        RDS01:
+
+  vars:
+    ansible_connection: winrm
+    ansible_user: adminuser
+    ansible_password: Password12345!
+    ansible_winrm_server_cert_validation: ignore
+    ansible_winrm_transport: credssp
