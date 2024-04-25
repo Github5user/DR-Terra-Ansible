@@ -1,0 +1,21 @@
+ssh -o StrictHostKeyChecking=no ansibleuser@172.16.3.221
+Passwordansible1!
+
+date +"%d.%m.%Y %H:%M:%S"
+
+cd /home/ansibleuser/
+source .venv/bin/activate
+
+ansible --version
+
+cd /etc/ansible
+cat /etc/ansible/hosts
+
+cd /home/ansibleuser/masterarbeit
+ansible all -m win_ping
+
+
+ansible all -m win_ping
+ansible-playbook playbook.yml
+
+date +"%d.%m.%Y %H:%M:%S"
