@@ -1,0 +1,15 @@
+vorname;nachname;firma;strasse;postleitzahl;stadt;title;festnetz;mobile;buero;homepage;staat;beschreibung
+User01;Web;Contoso Limited;Hauptstrasse 1;1010;Wien;Vertrieb;01555497908;069910023459;Zimmer 115;www.contoso.com;AT;Demo User
+User02;Web;Contoso Limited;Hauptstrasse 1;1010;Wien;Vertrieb;01555497908;069910023459;Zimmer 115;www.contoso.com;AT;Demo User
+User03;Web;Contoso Limited;Hauptstrasse 1;1010;Wien;Vertrieb;01555497908;069910023459;Zimmer 115;www.contoso.com;AT;Demo User
+User01;RDS;Contoso Limited;Hauptstrasse 1;1010;Wien;Vertrieb;01555497908;069910023459;Zimmer 115;www.contoso.com;AT;Demo User
+User02;RDS;Contoso Limited;Hauptstrasse 1;1010;Wien;Vertrieb;01555497908;069910023459;Zimmer 115;www.contoso.com;AT;Demo User
+User03;RDS;Contoso Limited;Hauptstrasse 1;1010;Wien;Vertrieb;01555497908;069910023459;Zimmer 115;www.contoso.com;AT;Demo User
+User01;File;Contoso Limited;Hauptstrasse 1;1090;Wien;Vertrieb;01555497904;069910023459;Zimmer 115;www.contoso.com;AT;Demo User
+User02;File;Contoso Limited;Hauptstrasse 1;1090;Wien;Vertrieb;01555497904;069910023459;Zimmer 115;www.contoso.com;AT;Demo User
+User03;File;Contoso Limited;Hauptstrasse 1;1090;Wien;Vertrieb;01555497904;069910023459;Zimmer 115;www.contoso.com;AT;Demo User
+Franz;Lehner;Contoso Limited;Hauptstrasse 1;1190;Wien;Einkaufer;01555697904;069910013459;Zimmer 125;www.contoso.com;AT;Demo User
+Herbert;Niedermayr;Contoso Limited;Bahnstrasse 46;1170;Wien;Buchhalter;01555697901;069912345678;Zimmer 245;www.contoso.com;AT;Demo User
+Markus;Elert;Contoso Limited;Bahnstrasse 46;1170;Wien;Buchhalter;01555697901;069912345679;Zimmer 245;www.contoso.com;AT;Demo User
+John;Doe;Contoso Limited;Bahnstrasse 46;1160;Wien;Geschäftsführer;01555697902;069912345680;Zimmer 135;www.contoso.com;AT;Demo User
+Max;Mustermann;Contoso Limited;Bahnstrasse 46;1170;Wien;Buchhalter;01555697901;069912345681;Zimmer 245;www.contoso.com;AT;Demo User
