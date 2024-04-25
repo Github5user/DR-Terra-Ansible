@@ -1,0 +1,14 @@
+# microsoft.ad.user module – Manage Active Directory users
+# https://docs.ansible.com/ansible/latest/collections/microsoft/ad/user_module.html
+
+# Tier 1 Administratoren - Server Admins
+- name: Tier 1 Admins erstellen
+  microsoft.ad.group:
+    name: T1-Admins
+    scope: global
+    path: "OU=Berechtigungsgruppen,OU=Verwaltung,DC=contoso,DC=local"
+    description: "Tier 1 Administratoren - Server Admins"
+    members:
+      add:
+      - CONTOSO\SchubertHerbert_adm
+    state: present
