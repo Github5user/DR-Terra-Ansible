@@ -1,0 +1,13 @@
+# community.windows.win_region module – Set the region and format settings
+# https://docs.ansible.com/ansible/latest/collections/community/windows/win_region_module.html
+
+- name: Regionseinstellungen setzen
+  community.windows.win_region:
+    unicode_language: "{{ unicode_language | default('de-DE', true)}}"
+    location: "{{ loc_code }}"
+    format: "{{ format_code }}"
+    copy_settings: true
+  register: result
+
+- ansible.windows.win_reboot:
+  when: result.restart_required
