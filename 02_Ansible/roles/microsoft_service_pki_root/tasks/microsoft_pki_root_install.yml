@@ -1,0 +1,18 @@
+# Desired State Configuration
+# https://docs.ansible.com/ansible/latest/os_guide/windows_dsc.html
+#
+# für eine Liste aller Rollen - auf Server => Get-WindowsFeature
+
+# für eine Liste aller resource_namen - auf Server => Get-DscResource
+
+- name: Serverrolle installieren
+  win_feature:
+    name: ADCS-Cert-Authority
+    state: present
+    include_sub_features: yes
+    include_management_tools: yes
+  register: adcs_installation
+
+- name: Neustart nach Abschluss der Installation
+  win_reboot:
+  when: adcs_installation.reboot_required
