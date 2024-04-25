@@ -1,0 +1,7 @@
+
+- name: Verzeichnis erstellen
+  include_tasks: "tasks/win_directory_create.yml"
+
+- name: Dateifreigaben erstellen / SMB share erstellen
+  include_tasks: "tasks/win_share_create.yml"
+
