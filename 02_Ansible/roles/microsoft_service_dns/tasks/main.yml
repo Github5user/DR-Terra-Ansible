@@ -1,0 +1,6 @@
+- name: DNS Server - Powershell Modul Installation
+  include_tasks: "tasks/microsoft_dns_powershell.yml"
+
+- name: DNS Service - A-Records
+  include_tasks: "tasks/microsoft_dns_arecords.yml"
+  
