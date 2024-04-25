@@ -1,0 +1,94 @@
+# ---
+# # 17.04.2024
+
+
+# Region Setting einstellen
+- name : Windows Allgemeine Einstellungen
+  hosts: DC01,PKI01,Web01,File01,RDS01
+  gather_facts: false
+  vars: 
+    unicode_language: de-DE
+    format_code: de-DE
+    # location 14 = Österreich  
+    loc_code: 14
+    time_code: W. Europe Standard Time
+  roles:
+  - role: win_settings_german
+
+# Active Directory Domain und DNS Service erstellen
+- name : Microsoft Verzeichnisdienst
+  hosts: DC01
+  gather_facts: false
+  vars: 
+    domain_name: contoso.local
+    domain_netbios_name: CONTOSO
+    domain_password: Password12345!
+    ntds_directory: C:\Windows\NTDS
+    sysvol_directory: C:\Windows\SYSVOL
+  roles:
+  - role: microsoft_service_ad_domain
+
+# DNS Service - Records anlegen
+- name : Microsoft Domain Namenssystem
+  hosts: DC01
+  gather_facts: false
+  roles:
+  - role: microsoft_service_dns
+
+# Active Directory Domain Join
+- name : Windows - Domain Join
+  hosts: File01,RDS01
+  gather_facts: false
+  vars: 
+    domain_name: contoso.local
+    domain_admin_user_selection: adminuser@contoso.local
+    domain_password_selection: Password12345!
+  roles:
+  - role: microsoft_ad_domain_join
+
+# Installation von Windows Rolle "Web Server"
+- name : Microsoft Web Service
+  hosts: Web01
+  gather_facts: false
+  vars: 
+    # für eine Liste aller Rollen - auf Server => Get-WindowsFeature
+    feature_name: Web-Server
+    include_sub_features_selection: "true"
+    include_management_tools_selection: "true"
+    IIS_path: 'C:\inetpub\wwwroot\intranet'
+  roles:
+  - role: microsoft_service_Web
+
+# Installation von Windows Rolle "File Service"
+- name : Microsoft File Service
+  hosts: File01
+  gather_facts: false
+  roles:
+  - role: microsoft_service_File
+
+# Verzeichnis erstellen und als Share freigeben
+- name : Windows - File-Share anlegen
+  hosts: File01
+  gather_facts: false
+  vars_files:
+    - vars.yml
+  vars: 
+    share_path: C:\Shares\Einkauf 
+    share_name: ShareEinkauf
+    share_description: "Das Share gehört dem Einkauf"
+  roles:
+  - role: win_share_create
+
+# Installation von Windows Rolle "Terminal Server"
+- name : Microsoft Remote Desktop Service
+  hosts: RDS01
+  gather_facts: false
+  roles:
+  - role: microsoft_service_RDS
+
+# Installation von Windows Rolle "Active Directory Certificate Services"
+- name : Microsoft Zertifikatsservice
+  hosts: PKI01
+  gather_facts: false
+  roles:
+  - role: microsoft_service_pki_root
