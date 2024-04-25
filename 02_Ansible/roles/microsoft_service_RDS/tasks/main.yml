@@ -1,0 +1,36 @@
+- name: RDS Server - Installation
+  vars: 
+    # für eine Liste aller Rollen - auf Server => Get-WindowsFeature
+    feature_name: Remote-Desktop-Services
+    include_sub_features_selection: "false"
+    include_management_tools_selection: "true"
+  include_tasks: "tasks/win_srv_add_feature.yml"
+
+
+- name: Admin-Tools - Installation
+  win_feature:
+    name:
+      - "RSAT-AD-Tools"
+      - "RSAT-DNS-Server"
+    state: present
+    include_management_tools: true
+
+
+- name: Terminal Server Client - Installation
+  include_tasks: "tasks/win_srv_add_feature_dsc.yml"
+
+
+- name: AD Gruppe - Remote Desktop Users berechtigen
+  ansible.windows.win_group_membership:
+    name: Remote Desktop Users
+    members:
+      - CONTOSO\RDS-Users
+    state: present
+
+
+- name: AD Gruppe - lokale Administratoren hinzufügen
+  ansible.windows.win_group_membership:
+    name: Administrators
+    members:
+      - CONTOSO\T1-Admins
+    state: present
