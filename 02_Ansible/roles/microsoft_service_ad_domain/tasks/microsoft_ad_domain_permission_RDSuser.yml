@@ -1,0 +1,9 @@
+# microsoft.ad.user module – Manage Active Directory users
+# https://docs.ansible.com/ansible/latest/collections/microsoft/ad/user_module.html
+
+- name: AD Group - Remote Desktop Users berechtigen
+  ansible.windows.win_group_membership:
+    name: Remote Desktop Users
+    members:
+      - CONTOSO\RDSUser01
+    state: present
