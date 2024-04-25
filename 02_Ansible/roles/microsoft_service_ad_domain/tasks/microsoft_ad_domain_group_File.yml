@@ -1,0 +1,32 @@
+# microsoft.ad.user module – Manage Active Directory users
+# https://docs.ansible.com/ansible/latest/collections/microsoft/ad/user_module.html
+
+# Berechtigungsgruppe für den Zugriff auf File Services
+# File Service Users - Read Only
+- name: File-Users-reader erstellen
+  microsoft.ad.group:
+    name: File-Users-reader
+    scope: global
+    path: "OU=Berechtigungsgruppen,OU=Verwaltung,DC=contoso,DC=local"
+    description: "Berechtigungsgruppe für den Zugriff auf File Services"
+    members:
+      add:
+      - CONTOSO\FileUser01
+      - CONTOSO\FileUser02
+      - CONTOSO\RDS-Users
+    state: present
+
+
+# Berechtigungsgruppe für den Zugriff auf File Services
+# File Service Users - Read and Write
+- name: File-Users-writer erstellen
+  microsoft.ad.group:
+    name: File-Users-writer
+    scope: global
+    path: "OU=Berechtigungsgruppen,OU=Verwaltung,DC=contoso,DC=local"
+    description: "Berechtigungsgruppe für den Zugriff auf File Services"
+    members:
+      add:
+      - CONTOSO\FileUser03
+      - CONTOSO\MustermannMax
+    state: present
