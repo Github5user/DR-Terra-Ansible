@@ -13,7 +13,7 @@ azure_subscription_id = "86   f52-b127-4e63-8ed9-5f7b6cae28d "
 azure_client_id = "db861f92-8de5-417f-ac9c-8e50c79dc5af"
 
 # Hier muss die Azure-Client Secret angepasst werden
-azure_client_secret = "7.V8Q~dq2BMlBP9wc4Qud1P9TZfbPFOj49TQ1dqA"
+azure_client_secret = "7 V8Q~dq BMlBP9wc4Qud1P9TZfbPFOj49TQ1dq "
 ################################################################
 
 ## Standort wo Infrastruktur bereitgestellt wird ##
