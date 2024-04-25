@@ -3,11 +3,11 @@
 ################################################################
 # Variablen für das Azure-Tenant definieren
 # Hier muss die Azure-Tenant angepasst werden
-azure_tenant_id = "23b4    -da63-4fea-95eb-97b44c78147 "
+azure_tenant_id = "23b4    -da63-4fea-95eb-97b44 78147 "
 
 # Variablen für das Azure-Abonnement (Subscription) definieren
 # Hier muss die Azure-Abonnement (Subscription) angepasst werden
-azure_subscription_id = "86   f52-b127-4e63-8ed9-5f7b6cae28d "
+azure_subscription_id = "86   f52-b127-4e63-8ed9-5f7b6 ae28d "
 
 # Hier muss die Azure-Client ID angepasst werden
 azure_client_id = "db861f92-8de5-417f-ac9c-8e50c79dc5af"
