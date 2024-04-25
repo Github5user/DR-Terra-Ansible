@@ -1,0 +1,20 @@
+# community.general.read_csv module – Read a CSV file
+# https://docs.ansible.com/ansible/latest/collections/community/general/read_csv_module.html
+- name: CSV-Datei lesen
+  community.general.read_csv:
+
+    # Datei liegt im definierten Verzeichnis
+    path: Dateien/DNSserver/DNS_A-records.csv
+    delimiter: ';'
+  register: csv_data
+  delegate_to: localhost
+
+
+- name: DNS A-records erstellen
+  win_dsc:
+    resource_name: xDnsRecord
+    Name: "{{ item.name }}"
+    Zone: "{{ item.zone }}"
+    Target: "{{ item.target }}"
+    Type: "{{ item.type }}"
+  loop: "{{ csv_data.list }}"
