@@ -1,0 +1,15 @@
+- name: Web Server - Installation
+  include_tasks: "tasks/win_srv_add_feature_IIS.yml"
+
+- name: Verzeichnis für virtuelle Website erstellen
+  # Verzeichnis erstellen
+  include_tasks: "tasks/win_directory_create.yml"
+
+- name: Web Server - Virtuelle Website "Default Web Site" löschen
+  include_tasks: "tasks/win_srv_remove_website.yml"
+
+- name: Web Server - Virtuelle Website erstellen
+  include_tasks: "tasks/win_srv_add_website.yml"
+
+- name: html Datei - Copy
+  include_tasks: "tasks/win_file_copy.yml"
