@@ -1,0 +1,14 @@
+# microsoft.ad.user module – Manage Active Directory users
+# https://docs.ansible.com/ansible/latest/collections/microsoft/ad/user_module.html
+
+# Tier 0 Administratoren - Infrastruktur Admins
+- name: Tier 0 Admins erstellen
+  microsoft.ad.group:
+    name: T0-Admins
+    scope: global
+    path: "OU=Berechtigungsgruppen,OU=Verwaltung,DC=contoso,DC=local"
+    description: "Tier 0 Administratoren - Infrastruktur Admins"
+    members:
+      add:
+      - CONTOSO\MayerHerbert_adm
+    state: present
