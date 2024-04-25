@@ -1,0 +1,8 @@
+- name: DNS Server vor Domain Join setzen
+  include_tasks: "tasks/microsoft_set_dns_server.yml"
+ 
+- name: Active Directory - Domain Join
+  include_tasks: "tasks/microsoft_ad_domain_join.yml"
+
+- name: DNS Server nach Domain Join setzen
+  include_tasks: "tasks/microsoft_set_dns_server.yml"
