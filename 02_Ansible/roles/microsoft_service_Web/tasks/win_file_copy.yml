@@ -1,0 +1,9 @@
+# win_copy – Copies files to remote locations on windows hosts
+# https://docs.ansible.com/ansible/2.9/modules/win_copy_module.html
+
+  - name: eine einzelne Datei kopieren
+    win_copy:
+      src: Dateien/webserver/index.html
+
+      # dest: 'C:\inetpub\wwwroot\intranet'
+      dest: "{{ IIS_path }}"
