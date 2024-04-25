@@ -1,0 +1,68 @@
+# Desired State Configuration
+# https://docs.ansible.com/ansible/latest/os_guide/windows_dsc.html
+#
+# für eine Liste aller Rollen - auf Server => Get-WindowsFeature
+
+- name: erforderliches NuGet package provider installieren
+  ansible.windows.win_shell: Find-PackageProvider -Name Nuget -ForceBootstrap -IncludeDependencies -Force
+
+
+# https://www.powershellgallery.com/packages/ActiveDirectoryCSDsc/5.0.1-preview0002
+- name: Powershell Modul installieren
+  win_psmodule:
+    name: ActiveDirectoryCSDsc
+    state: present
+    accept_license: true
+    AllowPrereleaseVersions: true
+
+
+- name: Serverrolle konfigurieren
+  ansible.windows.win_dsc:
+  # win_dsc:
+    resource_name: AdcsCertificationAuthority
+    Ensure: "Present"
+    IsSingleInstance: "Yes"
+
+    # EnterpriseRootCA und EnterpriseSubordinateCA
+    # für Umgebungen mit Active Directory
+    # CAType: "EnterpriseRootCA"
+
+    # StandaloneRootCA und StandaloneSubordinateCA
+    # für Umgebungen ohne Active Directory
+    CAType: "StandaloneRootCA"
+
+    CACommonName: "Root-CA"
+    CADistinguishedNameSuffix: "CN=my-new-PKI,DC=contoso,DC=local"
+    CryptoProviderName: "RSA#Microsoft Software Key Storage Provider"
+    # KeyLength: 2048
+    KeyLength: 4096
+    HashAlgorithmName: "SHA256"
+    ValidityPeriod: "Years"
+    ValidityPeriodUnits: 4
+
+    # Definition der PKI Datenbank
+    DatabaseDirectory: 'C:\Windows\system32\CertLog'
+    LogDirectory: 'C:\Windows\system32\CertLog'
+
+    Credential_username: 'pki01\adminuser'
+    # Credential_username: "adminuser"
+    Credential_password: "Password12345!"
+
+    PsDscRunAsCredential_username: 'pki01\adminuser'
+    # PsDscRunAsCredential_username: "adminuser"
+    PsDscRunAsCredential_password: "Password12345!"
+
+  register: ca_configuration
+
+
+- name: Neustart nach Abschluss der Installation
+  ansible.windows.win_reboot:
+    msg: "Rebooting after CA configuration"
+  when: ca_configuration.reboot_required
+
+
+- name: Starte die Zertifizierungsstellen-Dienste
+  ansible.windows.win_service:
+    name: CertSvc
+    start_mode: auto
+    state: started
