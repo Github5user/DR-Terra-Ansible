@@ -1,0 +1,26 @@
+# ansible.windows.win_feature module – Installs and uninstalls Windows Features on Windows Server
+# https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_feature_module.html
+# für eine Liste aller Rolleng => Get-WindowsFeature
+#
+- name: Serverrolle installieren
+  ansible.windows.win_feature:
+    name: "{{ feature_name }}"
+    state: present
+    # include_sub_features: true
+    include_sub_features: "{{ include_sub_features_selection }}"
+
+    # include_management_tools: true
+    include_management_tools: "{{ include_management_tools_selection }}"
+  register: win_feature
+
+- name: Neustart nach Abschluss der Installation
+  ansible.windows.win_reboot:
+  when: win_feature.reboot_required
+
+# der folgende Powershell Befehl erstellt eine lokale host-based Firewall-Regel
+# für das Netzwerkport 80 und 443
+- name: Firewall-Regel erstellen
+  ansible.windows.win_powershell:
+    script: |
+      # New-NetFirewallRule -DisplayName 'GH-Web Traffic' -Direction Inbound -Action Allow -Protocol TCP -LocalPort 80,443
+      if ((Get-NetFirewallRule -DisplayName "GH-Web Traffic" -ErrorAction SilentlyContinue) -eq $null) {New-NetFirewallRule -DisplayName 'GH-Web Traffic' -Direction Inbound -Action Allow -Protocol TCP -LocalPort 80,443} else {Write-Host "Die Regel 'Web Traffic' existiert bereits."}
