@@ -1,0 +1,11 @@
+
+# community.windows.win_timezone module – Sets Windows machine timezone
+# https://docs.ansible.com/ansible/latest/collections/community/windows/win_timezone_module.html
+
+# Microsoft Time Zone Index Values
+# https://learn.microsoft.com/en-us/previous-versions/windows/embedded/ms912391(v=winembedded.11)?redirectedfrom=MSDN
+
+- name: Zeitzone setzen
+  community.windows.win_timezone:
+    timezone: "{{ time_code }}"
+  register: result
