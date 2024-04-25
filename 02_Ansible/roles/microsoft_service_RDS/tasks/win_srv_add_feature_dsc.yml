@@ -1,0 +1,13 @@
+# ansible.windows.win_dsc module – Invokes a PowerShell DSC configuration
+# https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_dsc_module.html
+# für eine Liste aller Rollen - auf Server => Get-WindowsFeature
+# Get-WindowsFeature
+
+- name: Telnet Client installieren
+  ansible.windows.win_dsc:
+    resource_name: WindowsFeature
+    Name: telnet-client
+
+    # Ensure: present = Installation
+    # Ensure: absent = Deinstallation
+    Ensure: absent
