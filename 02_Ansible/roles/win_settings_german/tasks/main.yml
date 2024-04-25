@@ -1,0 +1,5 @@
+- name: Regionen-Einstellungen
+  include_tasks: tasks/win_set_region.yml
+
+- name: Zeitzonen-Einstellungen
+  include_tasks: tasks/win_set_time.yml
