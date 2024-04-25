@@ -1,0 +1,5 @@
+- name: Active Directory Certificate Services - Installation
+  include_tasks: "tasks/microsoft_pki_root_install.yml"
+
+- name: Active Directory Certificate Services - Konfiguration
+  include_tasks: "tasks/microsoft_pki_root_config.yml"
