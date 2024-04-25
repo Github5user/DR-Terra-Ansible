@@ -1,0 +1,28 @@
+# ansible.windows.win_share module – Manage Windows shares
+# https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_share_module.html
+
+- name: eine SMB-Freigabe auf einem Windows-Server erstellen
+  ansible.windows.win_share:
+    name: "{{ share_name }}"
+    description: "{{ share_description }}"
+    path: "{{ share_path }}"
+    # list: "{{ share_list }}"
+    # read: "{{ share_read }}"
+    # change: "{{ share_change }}"
+    # full: "{{ share_full }}"
+
+    list: yes
+
+    # read: CONTOSO\File-Users-reader
+    read: "{{ ad_domain }}\\File-Users-reader"
+    
+    # change: CONTOSO\File-Users-writer
+    # change: "{{ ad_domain }}\\File-Users-writer,{{ ad_domain }}\\File-Users-reader"
+    change: "{{ ad_domain }}\\File-Users-writer"
+
+    # full: Administrators,CONTOSO\T1-Admins
+    full: "Administrators,{{ ad_domain }}\\T1-Admins"
+
+    # state: present = hinzufuegen eines Shares
+    # state: absent = entfernen eines Shares
+    state: present
