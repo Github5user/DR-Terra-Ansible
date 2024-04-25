@@ -1,0 +1,7 @@
+powershell.exe
+
+export_VM.ps1
+
+upload_VM.ps1
+
+import_VM.ps1
