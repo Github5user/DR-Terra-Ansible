@@ -1,0 +1,16 @@
+echo %date% %time%
+
+cd C:\Temp\Terraform\Masterarbeit
+
+c:\temp\Terraform\terraform.exe init
+c:\temp\Terraform\terraform.exe init -upgrade
+
+c:\temp\Terraform\terraform.exe validate
+
+c:\temp\Terraform\terraform.exe plan -var-file="c:\temp\Terraform\Masterarbeit\variables.tfvars"
+
+c:\temp\Terraform\terraform.exe apply -var-file="c:\temp\Terraform\Masterarbeit\variables.tfvars"
+
+c:\temp\Terraform\terraform.exe destroy -var-file="c:\temp\Terraform\Beispiele\variables.tfvars"
+
+echo %date% %time%
