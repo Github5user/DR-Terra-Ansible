@@ -1,0 +1,8 @@
+# ansible.windows.win_file module – Creates, touches or removes files or directories
+# https://docs.ansible.com/ansible/latest/collections/ansible/windows/win_file_module.html
+
+- name: ein Verzeichnis erstellen
+  ansible.windows.win_file:
+    # path: C:\inetpub\wwwroot\intranet
+    path: "{{ IIS_path }}"
+    state: directory
