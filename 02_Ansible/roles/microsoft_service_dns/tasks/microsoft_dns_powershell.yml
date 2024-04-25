@@ -1,0 +1,11 @@
+# https://www.ansible.com/blog/using-the-win_dsc-module-in-ansible
+
+- name: erforderliches NuGet package provider installieren
+  ansible.windows.win_shell: Find-PackageProvider -Name Nuget -ForceBootstrap -IncludeDependencies -Force
+
+- name: xDnsServer installieren
+  win_psmodule:
+    name: xDnsServer
+    repository: PSGallery
+    accept_license: true
+    state: present
