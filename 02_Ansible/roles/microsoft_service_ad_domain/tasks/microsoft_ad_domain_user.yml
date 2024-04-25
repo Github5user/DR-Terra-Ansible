@@ -1,0 +1,25 @@
+# microsoft.ad.user module – Manage Active Directory users
+# https://docs.ansible.com/ansible/latest/collections/microsoft/ad/user_module.html
+
+- name: AD Benutzer erstellen
+  microsoft.ad.user:
+    # cn - canonical name
+    name: "{{ sur_name }} {{ first_name }}"
+
+    sam_account_name: "{{ sur_name }}{{ first_name }}_adm"
+    upn: "{{ sur_name }}{{ first_name }}_adm@{{ domain_name }}"
+
+    # Anzeigename
+    display_name: "{{ sur_name }} {{ first_name }}"
+    firstname: "{{ first_name }}"
+    surname: "{{ sur_name }}"
+    password: "{{ user_password }}"
+    company: "Contoso Limited"
+    enabled: true
+    password_never_expires: false
+    path: "{{ ou_path }}"
+    groups:
+      set:
+      - Domain Users
+      - Domain Admins
+    state: present
