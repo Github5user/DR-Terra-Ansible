@@ -1,6 +1,7 @@
 # win_iis_website – Configures a IIS Web site
 # https://docs.ansible.com/ansible/2.8/modules/win_iis_website_module.html
 
+# Virtuelle Website "Default Web Site" löschen, damit Netzwerkport 80 nicht in Verwendung ist
 - name: Standard-Website aus dem IIS entfernen
   win_iis_website:
     name: "Default Web Site"
