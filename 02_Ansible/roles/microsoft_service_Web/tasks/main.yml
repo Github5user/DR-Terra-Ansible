@@ -1,15 +1,20 @@
+# Installation von Windows Rolle "Web-Server"
 - name: Web Server - Installation
   include_tasks: "tasks/win_srv_add_feature_IIS.yml"
 
+# Dateiverzeichnis erstellen
 - name: Verzeichnis für virtuelle Website erstellen
   # Verzeichnis erstellen
   include_tasks: "tasks/win_directory_create.yml"
 
+# Virtuelle Website "Default Web Site" löschen, damit Netzwerkport 80 nicht in Verwendung ist
 - name: Web Server - Virtuelle Website "Default Web Site" löschen
   include_tasks: "tasks/win_srv_remove_website.yml"
 
+# Virtuelle Website erstellen
 - name: Web Server - Virtuelle Website erstellen
   include_tasks: "tasks/win_srv_add_website.yml"
 
+# Exemplarische HTML-Inhalt auf den Webserver kopieren
 - name: html Datei - Copy
   include_tasks: "tasks/win_file_copy.yml"
