@@ -1,4 +1,9 @@
 ########## SERVER ###########
+# Domain Controller
+# Zertifikatsserver
+# Webserver
+# Dateiserver
+########## ###### ###########
 
 # NIC erstellen - Verzeichnisdienstserver (Domain Controller)
 resource "azurerm_network_interface" "NIC_dc_server01" {
