@@ -7,6 +7,7 @@
     include_management_tools_selection: "true"
   include_tasks: "tasks/win_srv_add_feature.yml"
 
+# Die Tier1-Administratoren "T1-Admins" zu den lokalen Administratoren hinzufuegen
 - name: AD Gruppe - lokale Administratoren hinzufügen
   ansible.windows.win_group_membership:
     name: Administrators
