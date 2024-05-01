@@ -3,6 +3,7 @@
 # für eine Liste aller Rollen - auf Server => Get-WindowsFeature
 # Get-WindowsFeature
 
+# Administrationstool "Telnet Client" installieren
 - name: Telnet Client installieren
   ansible.windows.win_dsc:
     resource_name: WindowsFeature
