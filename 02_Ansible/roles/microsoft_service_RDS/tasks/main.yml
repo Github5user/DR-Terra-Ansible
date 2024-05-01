@@ -7,6 +7,7 @@
   include_tasks: "tasks/win_srv_add_feature.yml"
 
 
+# Remoteserver-Verwaltungstools "Remote Server Administration Tools" installieren
 - name: Admin-Tools - Installation
   win_feature:
     name:
@@ -16,10 +17,12 @@
     include_management_tools: true
 
 
+# Administrationstool "Telnet Client" installieren
 - name: Terminal Server Client - Installation
   include_tasks: "tasks/win_srv_add_feature_dsc.yml"
 
 
+# Die AD-Gruppe "RDS-User" zu den lokalen Gruppe "Remote Desktop Users" hinzufuegen
 - name: AD Gruppe - Remote Desktop Users berechtigen
   ansible.windows.win_group_membership:
     name: Remote Desktop Users
@@ -28,6 +31,7 @@
     state: present
 
 
+# Die Tier1-Administratoren "T1-Admins" zu den lokalen Administratoren hinzufuegen
 - name: AD Gruppe - lokale Administratoren hinzufügen
   ansible.windows.win_group_membership:
     name: Administrators
