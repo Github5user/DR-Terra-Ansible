@@ -57,7 +57,7 @@
     name_of_OU: "Web"
     path_name: "OU=Server,DC=contoso,DC=local"
 
-    # protected "true" bedeutet, dass die OU vor versehentlichen Loeschen geschuetzt ist
+    # protected "true" bedeutet, dass die OU vor versehentlichem Loeschen geschuetzt ist
     # protected "false" bedeutet, dass die OU sofort geloescht werden kann
     protect_selection: "false"
   include_tasks: "tasks/microsoft_ad_domain_ou.yml"
@@ -67,7 +67,7 @@
     name_of_OU: "Client"
     path_name: "DC=contoso,DC=local"
     
-    # protected "true" bedeutet, dass die OU vor versehentlichen Loeschen geschuetzt ist
+    # protected "true" bedeutet, dass die OU vor versehentlichem Loeschen geschuetzt ist
     # protected "false" bedeutet, dass die OU sofort geloescht werden kann
     protect_selection: "false"
   include_tasks: "tasks/microsoft_ad_domain_ou.yml"
