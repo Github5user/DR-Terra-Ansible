@@ -15,7 +15,7 @@
   roles:
   - role: win_settings_german
 
-# Active Directory Domain und DNS Service erstellen
+# Installation von Active Directory Domain und DNS Service
 - name : Microsoft Verzeichnisdienst
   hosts: DC01
   gather_facts: false
@@ -66,7 +66,7 @@
   roles:
   - role: microsoft_service_File
 
-# Verzeichnis erstellen und als Share freigeben
+# Datei-Verzeichnis erstellen und als File-Share freigeben
 - name : Windows - File-Share anlegen
   hosts: File01
   gather_facts: false
