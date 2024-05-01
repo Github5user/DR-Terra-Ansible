@@ -7,6 +7,7 @@ terraform {
   }
 }
 
+# Variablen sind in der Datei variables.tfvars definiert #
 
 ## Azure Subscription mit Variablen ##
 provider "azurerm" {
@@ -17,7 +18,7 @@ provider "azurerm" {
   client_secret   = var.azure_client_secret
   tenant_id       = var.azure_tenant_id
 }
-# Ende -  Azure Subscription ##
+## Ende -  Azure Subscription ##
 
 # Ressourcengruppe abfragen/einlesen - "RG-AzureNetwork"
 # Die Ressourcengruppe "RG-AzureNetwork" wird vorausgesetzt.
